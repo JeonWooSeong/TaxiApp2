@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    useLibrary 'org.apache.http.legacy' // http client 사용을 위한 라이브러리
     defaultConfig {
         applicationId "com.example.wooseonge.taxiapp"
         minSdkVersion 19
@@ -17,6 +18,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dexOptions {
+        javaMaxHeapSize "4g" //specify the heap size for the dex process
+    }
 }
 
 dependencies {
@@ -25,5 +29,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'org.projectlombok:lombok:1.12.2'
+    compile 'com.google.code.gson:gson:2.3.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
