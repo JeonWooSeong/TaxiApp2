@@ -46,7 +46,6 @@ public class TaxiActivity extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
     public Map<String, String> apiCode;
 
     @Override
@@ -54,7 +53,6 @@ public class TaxiActivity extends AppCompatActivity {
         super.onCreate(bundle);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
     protected void apiCode(String apiValue) {
         apiCode = new HashMap<>();
@@ -86,7 +84,8 @@ public class TaxiActivity extends AppCompatActivity {
 
         Log.d("request", "====================================================");
         Log.d("request", "parameter : " + mParameter);
-        Log.d("request", "====================================================");
+        Log.d("request", "===================================================="); //로그확인 -> 역순으로 add해준 4가지 모두 나옴. 왜?
+//        mainactivity에서 parameter에 추가해준 2개 값은 안나옴. 왜?
 
         HttpRequstor requstor = new HttpRequstor();
         requstor.execute(opCode, funcCode);
@@ -130,25 +129,6 @@ public class TaxiActivity extends AppCompatActivity {
                 .build();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
 
     private class HttpRequstor extends AsyncTask<Object, Void, String> {
 
